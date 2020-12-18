@@ -8,7 +8,7 @@ public class FileReader {
 
     public void ReadFile(Path filePath)
     {
-        System.out.println(filePath);
+
     }
 
 }

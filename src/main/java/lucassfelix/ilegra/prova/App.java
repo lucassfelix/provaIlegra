@@ -4,10 +4,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class App{
 
@@ -54,7 +52,7 @@ public class App{
 
             Files.list(pathToInputs)
                             .filter(path -> !outputFilesSet.contains(path.getFileName().toString().replaceFirst("[.].+$","")))
-                            .forEach(path -> fileReader.ReadFile(path));
+                            .forEach(DataProcessor::ProcessInput);
 
             break;
         }
