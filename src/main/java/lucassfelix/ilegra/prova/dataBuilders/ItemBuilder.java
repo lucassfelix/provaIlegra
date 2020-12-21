@@ -1,4 +1,6 @@
-package lucassfelix.ilegra.prova;
+package lucassfelix.ilegra.prova.dataBuilders;
+
+import lucassfelix.ilegra.prova.dataObjects.Item;
 
 public class ItemBuilder {
 

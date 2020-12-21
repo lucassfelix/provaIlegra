@@ -1,4 +1,7 @@
-package lucassfelix.ilegra.prova;
+package lucassfelix.ilegra.prova.dataBuilders;
+
+import lucassfelix.ilegra.prova.dataObjects.Item;
+import lucassfelix.ilegra.prova.dataObjects.Sale;
 
 public class SaleBuilder {
 
@@ -10,18 +13,18 @@ public class SaleBuilder {
         this.sale = new Sale();
     }
 
-    private static SaleBuilder builder()
+    public static SaleBuilder builder()
     {
         return new SaleBuilder();
     }
 
-    private SaleBuilder withSaleId(String saleId)
+    public SaleBuilder withSaleId(String saleId)
     {
         sale.setSaleId(Integer.parseInt(saleId));
         return this;
     }
 
-    private SaleBuilder withSalesmanName(String salesmanName)
+    public SaleBuilder withSalesmanName(String salesmanName)
     {
         sale.setSalesmanName(salesmanName);
         return this;

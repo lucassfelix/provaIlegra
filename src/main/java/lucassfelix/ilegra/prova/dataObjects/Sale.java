@@ -1,4 +1,4 @@
-package lucassfelix.ilegra.prova;
+package lucassfelix.ilegra.prova.dataObjects;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,4 +42,12 @@ public class Sale {
         return salesmanName;
     }
 
+    @Override
+    public String toString() {
+        return "Sale{" +
+                "saleId=" + saleId +
+                ", sales=" + sales +
+                ", salesmanName='" + salesmanName + '\'' +
+                '}';
+    }
 }

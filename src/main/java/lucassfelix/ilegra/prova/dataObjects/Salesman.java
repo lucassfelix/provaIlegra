@@ -1,4 +1,4 @@
-package lucassfelix.ilegra.prova;
+package lucassfelix.ilegra.prova.dataObjects;
 
 public class Salesman {
 

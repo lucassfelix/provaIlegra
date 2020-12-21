@@ -51,8 +51,8 @@ public class App{
                     .collect(Collectors.toSet());
 
             Files.list(pathToInputs)
-                            .filter(path -> !outputFilesSet.contains(path.getFileName().toString().replaceFirst("[.].+$","")))
-                            .forEach(fileReader::ReadFile);
+                            .filter(path -> !outputFilesSet.contains(path.getFileName().toString().replaceFirst("ALL_AFTER_DOT_REGEX","")))
+                            .map(fileReader::readFile);
 
             break;
         }

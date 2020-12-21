@@ -1,6 +1,6 @@
-package lucassfelix.ilegra.prova;
+package lucassfelix.ilegra.prova.dataObjects;
 
-public class Bussiness {
+public class Business {
 
     private String cnpj;
     private String name;
@@ -28,5 +28,12 @@ public class Bussiness {
 
     public String getBussinessArea() {
         return bussinessArea;
+    }
+
+    @Override
+    public String toString() {
+        return "Business " + name +
+                ". CNPJ = " + cnpj +
+                ". Bussiness Area = " + bussinessArea;
     }
 }

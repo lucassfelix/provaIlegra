@@ -1,4 +1,4 @@
-package lucassfelix.ilegra.prova;
+package lucassfelix.ilegra.prova.dataObjects;
 
 public class Item{
     private int itemId;
@@ -27,5 +27,14 @@ public class Item{
 
     public int getPrice() {
         return price;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "itemId=" + itemId +
+                ", quantity=" + quantity +
+                ", price=" + price +
+                '}';
     }
 }
