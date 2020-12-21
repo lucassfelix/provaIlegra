@@ -52,7 +52,7 @@ public class App{
 
             Files.list(pathToInputs)
                             .filter(path -> !outputFilesSet.contains(path.getFileName().toString().replaceFirst("[.].+$","")))
-                            .forEach(DataProcessor::ProcessInput);
+                            .forEach(fileReader::ReadFile);
 
             break;
         }
