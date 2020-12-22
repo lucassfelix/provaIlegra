@@ -16,8 +16,7 @@ import java.util.List;
 public class DataFileTest {
 
     @Test
-    public void shouldReturnCorrectSalesmanAmount()
-    {
+    public void shouldReturnCorrectSalesmanAmount() {
         List<Salesman> mockSalesmanList = new ArrayList<>();
         Salesman mockSalesman = new Salesman();
         mockSalesman.setName("Lucas");
@@ -25,21 +24,20 @@ public class DataFileTest {
         mockSalesman.setSalary(1000.0);
         mockSalesmanList.add(mockSalesman);
 
-        DataFile mockDataFile = new DataFile("test",mockSalesmanList,null,null);
+        DataFile mockDataFile = new DataFile("test", mockSalesmanList, null, null);
 
         int actualCount = mockDataFile.salesmanAmount();
 
-        Assert.assertEquals(actualCount,mockSalesmanList.size());
+        Assert.assertEquals(actualCount, mockSalesmanList.size());
 
         mockSalesmanList.clear();
         actualCount = mockDataFile.salesmanAmount();
 
-        Assert.assertEquals(actualCount,mockSalesmanList.size());
+        Assert.assertEquals(actualCount, mockSalesmanList.size());
     }
 
     @Test
-    public void shouldReturnCorrectClientAmount()
-    {
+    public void shouldReturnCorrectClientAmount() {
         List<Business> mockBusinessList = new ArrayList<>();
         Business mockBusiness = new Business();
         mockBusiness.setName("Lucas");
@@ -47,21 +45,20 @@ public class DataFileTest {
         mockBusiness.setBussinessArea("Iha");
         mockBusinessList.add(mockBusiness);
 
-        DataFile mockDataFile = new DataFile("test",null,mockBusinessList,null);
+        DataFile mockDataFile = new DataFile("test", null, mockBusinessList, null);
 
         int actualCount = mockDataFile.clientAmount();
 
-        Assert.assertEquals(actualCount,mockBusinessList.size());
+        Assert.assertEquals(actualCount, mockBusinessList.size());
 
         mockBusinessList.clear();
         actualCount = mockDataFile.clientAmount();
 
-        Assert.assertEquals(actualCount,mockBusinessList.size());
+        Assert.assertEquals(actualCount, mockBusinessList.size());
     }
 
     @Test
-    public void shouldReturnMostExpensiveSale()
-    {
+    public void shouldReturnMostExpensiveSale() {
 
         List<Sale> mockSaleList = new ArrayList<>();
         mockSaleList.add(
@@ -69,12 +66,12 @@ public class DataFileTest {
                         .withSaleId(1)
                         .withSalesmanName("Lucas")
                         .withNewItem(
-                            ItemBuilder.builder()
-                                    .withItemId(1)
-                                    .withItemQuantity(1)
-                                    .withItemPrice(10)
-                                    .build()
-                ).build());
+                                ItemBuilder.builder()
+                                        .withItemId(1)
+                                        .withItemQuantity(1)
+                                        .withItemPrice(10)
+                                        .build()
+                        ).build());
 
         mockSaleList.add(
                 SaleBuilder.builder()
@@ -89,27 +86,26 @@ public class DataFileTest {
                         ).build());
 
         mockSaleList.add(
-            SaleBuilder.builder()
-                    .withSaleId(3)
-                    .withSalesmanName("Lucas")
-                    .withNewItem(
-                            ItemBuilder.builder()
-                                    .withItemId(1)
-                                    .withItemQuantity(3)
-                                    .withItemPrice(10)
-                                    .build()
-                    ).build());
+                SaleBuilder.builder()
+                        .withSaleId(3)
+                        .withSalesmanName("Lucas")
+                        .withNewItem(
+                                ItemBuilder.builder()
+                                        .withItemId(1)
+                                        .withItemQuantity(3)
+                                        .withItemPrice(10)
+                                        .build()
+                        ).build());
 
-        DataFile testDataFile = new DataFile("test",null,null,mockSaleList);
+        DataFile testDataFile = new DataFile("test", null, null, mockSaleList);
 
         int actual = testDataFile.mostExpensiveSaleId();
 
-        Assert.assertEquals(3,actual);
+        Assert.assertEquals(3, actual);
     }
 
     @Test
-    public void shouldReturnWorstSalesman()
-    {
+    public void shouldReturnWorstSalesman() {
         List<Salesman> mockSalesmanList = new ArrayList<>();
 
         mockSalesmanList.add(SalesmanBuilder.builder()
@@ -157,11 +153,11 @@ public class DataFileTest {
                                         .build()
                         ).build());
 
-        DataFile testDataFile = new DataFile("test",mockSalesmanList,null,mockSaleList);
+        DataFile testDataFile = new DataFile("test", mockSalesmanList, null, mockSaleList);
 
         String actual = testDataFile.worstSalesmanEver();
 
-        Assert.assertEquals("Marco",actual);
+        Assert.assertEquals("Marco", actual);
     }
 
 }

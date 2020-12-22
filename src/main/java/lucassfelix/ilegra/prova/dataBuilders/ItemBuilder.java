@@ -2,7 +2,6 @@ package lucassfelix.ilegra.prova.dataBuilders;
 
 import lucassfelix.ilegra.prova.FailedBuildException;
 import lucassfelix.ilegra.prova.dataObjects.Item;
-import lucassfelix.ilegra.prova.dataObjects.Sale;
 
 import java.util.Optional;
 

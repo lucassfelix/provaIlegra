@@ -6,7 +6,6 @@ import lucassfelix.ilegra.prova.dataBuilders.SaleBuilder;
 import lucassfelix.ilegra.prova.dataBuilders.SalesmanBuilder;
 import lucassfelix.ilegra.prova.dataObjects.Business;
 import lucassfelix.ilegra.prova.dataObjects.DataFile;
-import lucassfelix.ilegra.prova.dataObjects.Item;
 import lucassfelix.ilegra.prova.dataObjects.Sale;
 import lucassfelix.ilegra.prova.dataObjects.Salesman;
 

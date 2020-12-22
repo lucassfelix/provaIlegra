@@ -5,7 +5,6 @@ import lucassfelix.ilegra.prova.dataObjects.Item;
 import lucassfelix.ilegra.prova.dataObjects.Sale;
 
 import java.util.Optional;
-import java.util.Scanner;
 
 public class SaleBuilder {
 
