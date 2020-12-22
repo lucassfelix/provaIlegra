@@ -5,6 +5,7 @@ import lucassfelix.ilegra.prova.dataBuilders.ItemBuilder;
 import lucassfelix.ilegra.prova.dataBuilders.SaleBuilder;
 import lucassfelix.ilegra.prova.dataBuilders.SalesmanBuilder;
 import lucassfelix.ilegra.prova.dataObjects.Business;
+import lucassfelix.ilegra.prova.dataObjects.DataFile;
 import lucassfelix.ilegra.prova.dataObjects.Sale;
 import lucassfelix.ilegra.prova.dataObjects.Salesman;
 
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class FileReader {
@@ -23,14 +25,16 @@ public class FileReader {
     private static final String SALE_DELIMITER = ",";
     private static final String BRACKETS = "ç\\[|]ç";
     private static final String ITEM_DELIMITER = "-";
+    private static final String ALL_AFTER_DOT_REGEX = "[.].+$";
 
-    public DataFile readFile(Path filePath)
+    public static DataFile readFile(Path filePath) throws InvalidInputException
     {
         try(Scanner sc = new Scanner(new File(String.valueOf(filePath)))
                 .useDelimiter(WHITESPACE_BETWEEN_DATA + "|"+ LINE_BREAK +
                         "|" + BRACKETS + "|" + DATA_DELIMITER))
         {
-
+            String fileName = filePath.getFileName().toString().replaceFirst(ALL_AFTER_DOT_REGEX,"");
+            System.out.println("Reading " + fileName);
             List<Salesman> salesmanList = new ArrayList<>();
             List<Business> businessList = new ArrayList<>();
             List<Sale> saleList = new ArrayList<>();
@@ -57,17 +61,21 @@ public class FileReader {
                 }
             }
 
-            return new DataFile(salesmanList,businessList,saleList);
+            sc.close();
+            return new DataFile(fileName,salesmanList,businessList,saleList);
 
         }catch (IOException e)
         {
             e.printStackTrace();
+        }catch (NoSuchElementException e)
+        {
+            throw new InvalidInputException("Input format caused errors.");
         }
 
         return null;
     }
 
-    private Salesman parseSalesman(Scanner sc) {
+    private static Salesman parseSalesman(Scanner sc) {
         return SalesmanBuilder.builder()
                 .withCPF(sc.next())
                 .withName(sc.next())
@@ -75,7 +83,7 @@ public class FileReader {
                 .build();
     }
 
-    private Business parseBusiness(Scanner sc) {
+    private static Business parseBusiness(Scanner sc) {
         return BusinessBuilder.builder()
                 .withCNPJ(sc.next().trim())
                 .withName(sc.next())
@@ -83,7 +91,7 @@ public class FileReader {
                 .build();
     }
 
-    private Sale parseSale(Scanner sc) {
+    private static Sale parseSale(Scanner sc) {
         SaleBuilder builder = SaleBuilder.builder().withSaleId(sc.next());
         String[] items = sc.next().split(SALE_DELIMITER);
         for (int i = 0; i < items.length; i++) {

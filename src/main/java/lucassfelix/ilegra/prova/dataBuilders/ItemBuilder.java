@@ -1,6 +1,10 @@
 package lucassfelix.ilegra.prova.dataBuilders;
 
+import lucassfelix.ilegra.prova.FailedBuildException;
 import lucassfelix.ilegra.prova.dataObjects.Item;
+import lucassfelix.ilegra.prova.dataObjects.Sale;
+
+import java.util.Optional;
 
 public class ItemBuilder {
 
@@ -34,9 +38,46 @@ public class ItemBuilder {
         return this;
     }
 
+    private boolean validateID()
+    {
+        if(Optional.ofNullable(item).map(Item::getItemId).isPresent()
+                && item.getItemId() > 0)
+            return true;
+        else
+            return false;
+    }
+
+    private boolean validateQuantity()
+    {
+        if(Optional.ofNullable(item).map(Item::getQuantity).isPresent()
+                && item.getQuantity() > 0)
+            return true;
+        else
+            return false;
+    }
+
+    private boolean validatePrice()
+    {
+        if(Optional.ofNullable(item).map(Item::getPrice).isPresent()
+                && item.getPrice() > 0)
+            return true;
+        else
+            return false;
+    }
+
     public Item build()
     {
-        return item;
+
+        if(!validatePrice())
+            throw new FailedBuildException("Invalid item price.");
+
+        if(!validateID())
+            throw new FailedBuildException("Invalid item ID.");
+
+        if(!validateQuantity())
+            throw new FailedBuildException("Invalid item quantity.");
+
+        return this.item;
     }
 
 }

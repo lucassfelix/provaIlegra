@@ -7,8 +7,6 @@ public class Sale {
 
     private int saleId;
 
-
-
     private List<Item> sales;
 
     private String salesmanName;
@@ -16,6 +14,13 @@ public class Sale {
     public Sale()
     {
         sales = new ArrayList<Item>();
+    }
+
+    public double calculateSalePrice()
+    {
+        return sales.stream()
+                .mapToDouble(item -> item.getPrice() * item.getQuantity())
+                .max().getAsDouble();
     }
 
     public void setSaleId(int saleId) {
