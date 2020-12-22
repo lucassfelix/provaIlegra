@@ -3,7 +3,7 @@ package lucassfelix.ilegra.prova.dataObjects;
 public class Item{
     private int itemId;
     private int quantity;
-    private int price;
+    private double price;
 
     public void setItemId(int itemId) {
         this.itemId = itemId;
@@ -13,7 +13,7 @@ public class Item{
         this.quantity = quantity;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -25,7 +25,7 @@ public class Item{
         return quantity;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 

@@ -1,14 +1,10 @@
 package lucassfelix.ilegra.prova;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.lang.management.ManagementFactory;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -20,7 +16,6 @@ public class App {
     private static final String PATH_TO_OUTPUTS = "/data/out";
     private static final String ALL_AFTER_DOT_REGEX = "[.].+$";
     private static final String EMPTY_STRING = "";
-
 
     private static Path pathToOutputs;
     private static Path pathToInputs;
@@ -76,7 +71,7 @@ public class App {
                     {
                         inputFiles
                                 .filter(path -> !outputFilesSet.contains(path.getFileName().toString().replaceFirst(ALL_AFTER_DOT_REGEX, "")))
-                                .map(FileReader::readFile)
+                                .map(FileReader::readFile).filter(Objects::nonNull)
                                 .forEach(dataFile -> dataFile.processFile(pathToOutputs));
                     }
 

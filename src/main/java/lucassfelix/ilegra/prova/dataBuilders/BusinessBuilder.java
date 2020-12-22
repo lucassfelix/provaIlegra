@@ -8,8 +8,8 @@ import java.util.Optional;
 public class BusinessBuilder {
 
     private Business business;
-    private String FOURTEEN_DIGIT_NUMBER_REGEX = "[0-9]{14}";
-    private String NAME_REGEX = "^(?![ .]+$)[a-zA-Z .]*$";
+    private static final String FOURTEEN_DIGIT_NUMBER_REGEX = "[0-9]{14}";
+    private static final String NAME_REGEX = "^(?![ .]+$)[a-zA-Z .]*$";
 
     public BusinessBuilder()
     {

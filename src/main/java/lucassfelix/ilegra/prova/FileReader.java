@@ -6,6 +6,7 @@ import lucassfelix.ilegra.prova.dataBuilders.SaleBuilder;
 import lucassfelix.ilegra.prova.dataBuilders.SalesmanBuilder;
 import lucassfelix.ilegra.prova.dataObjects.Business;
 import lucassfelix.ilegra.prova.dataObjects.DataFile;
+import lucassfelix.ilegra.prova.dataObjects.Item;
 import lucassfelix.ilegra.prova.dataObjects.Sale;
 import lucassfelix.ilegra.prova.dataObjects.Salesman;
 
@@ -41,9 +42,11 @@ public class FileReader {
 
             while (sc.hasNext())
             {
-                //sc.hasNextInteger;
-                int id = Integer.parseInt(sc.next().trim());
-//                int id = 0;
+                if(!sc.hasNextInt())
+                    throw new InvalidInputException("Input format invalid.");
+
+                int id = sc.nextInt();
+
                 switch (id) {
                     case 1:
                         Salesman newSalesman = parseSalesman(sc);
@@ -70,40 +73,57 @@ public class FileReader {
         }catch (NoSuchElementException e)
         {
             throw new InvalidInputException("Input format caused errors.");
+        }catch (NumberFormatException e)
+        {
+            throw new InvalidInputException("Input formatting is invalid.");
+        }catch (FailedBuildException e)
+        {
+            throw new FailedBuildException(e.getMessage() + " Located in " + filePath + ".");
         }
 
         return null;
     }
 
     private static Salesman parseSalesman(Scanner sc) {
-        return SalesmanBuilder.builder()
+        SalesmanBuilder builder = SalesmanBuilder.builder()
                 .withCPF(sc.next())
-                .withName(sc.next())
-                .withSalary(sc.next())
+                .withName(sc.next());
+
+        if(!sc.hasNextDouble())
+            throw new InvalidInputException("Input salary format invalid.");
+
+        return builder.withSalary(sc.nextDouble())
                 .build();
     }
 
     private static Business parseBusiness(Scanner sc) {
         return BusinessBuilder.builder()
-                .withCNPJ(sc.next().trim())
+                .withCNPJ(sc.next())
                 .withName(sc.next())
                 .withBussinessArea(sc.next())
                 .build();
     }
 
     private static Sale parseSale(Scanner sc) {
-        SaleBuilder builder = SaleBuilder.builder().withSaleId(sc.next());
+
+        if(!sc.hasNextInt())
+            throw new InvalidInputException("Input sale id formatting is invalid.");
+
+        SaleBuilder saleBuilder = SaleBuilder.builder().withSaleId(sc.nextInt());
         String[] items = sc.next().split(SALE_DELIMITER);
         for (int i = 0; i < items.length; i++) {
             String[] itemProprieties = items[0].split(ITEM_DELIMITER);
-            builder.withNewItem(
+            int itemId = Integer.parseInt(itemProprieties[0]);
+            int itemQuantity = Integer.parseInt(itemProprieties[1]);
+            double itemPrice = Double.parseDouble(itemProprieties[2]);
+            saleBuilder.withNewItem(
                     ItemBuilder.builder()
-                    .withItemId(itemProprieties[0])
-                    .withItemQuantity(itemProprieties[1])
-                    .withItemPrice(itemProprieties[2])
-                    .build());
+                            .withItemId(itemId)
+                            .withItemQuantity(itemQuantity)
+                            .withItemPrice(itemPrice)
+                            .build());
         }
-        return builder.withSalesmanName(sc.next()).build();
+        return saleBuilder.withSalesmanName(sc.next()).build();
     }
 
 }

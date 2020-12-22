@@ -10,8 +10,8 @@ import java.util.Optional;
 public class SalesmanBuilder {
 
     private Salesman salesman;
-    private String ELEVEN_DIGIT_NUMBER_REGEX = "[0-9]{11}";
-    private String NAME_REGEX = "^(?![ .]+$)[a-zA-Z .]*$";
+    private static final String ELEVEN_DIGIT_NUMBER_REGEX = "[0-9]{11}";
+    private static final String NAME_REGEX = "^(?![ .]+$)[a-zA-Z .]*$";
 
     public SalesmanBuilder()
     {
@@ -35,9 +35,9 @@ public class SalesmanBuilder {
         return this;
     }
 
-    public SalesmanBuilder withSalary(String salary)
+    public SalesmanBuilder withSalary(Double salary)
     {
-        salesman.setSalary(Double.parseDouble(salary));
+        salesman.setSalary(salary);
         return this;
     }
 

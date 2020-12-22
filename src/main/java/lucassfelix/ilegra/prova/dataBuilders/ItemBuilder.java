@@ -20,21 +20,21 @@ public class ItemBuilder {
         return new ItemBuilder();
     }
 
-    public ItemBuilder withItemId(String itemId)
+    public ItemBuilder withItemId(int itemId)
     {
-        item.setItemId(Integer.parseInt(itemId));
+        item.setItemId(itemId);
         return this;
     }
 
-    public ItemBuilder withItemQuantity(String itemQuantity)
+    public ItemBuilder withItemQuantity(int itemQuantity)
     {
-        item.setQuantity(Integer.parseInt(itemQuantity));
+        item.setQuantity(itemQuantity);
         return this;
     }
 
-    public ItemBuilder withItemPrice(String itemPrice)
+    public ItemBuilder withItemPrice(double itemPrice)
     {
-        item.setPrice(Integer.parseInt(itemPrice));
+        item.setPrice(itemPrice);
         return this;
     }
 

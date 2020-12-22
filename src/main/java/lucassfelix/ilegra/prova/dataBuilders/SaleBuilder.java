@@ -3,7 +3,6 @@ package lucassfelix.ilegra.prova.dataBuilders;
 import lucassfelix.ilegra.prova.FailedBuildException;
 import lucassfelix.ilegra.prova.dataObjects.Item;
 import lucassfelix.ilegra.prova.dataObjects.Sale;
-import lucassfelix.ilegra.prova.dataObjects.Salesman;
 
 import java.util.Optional;
 import java.util.Scanner;
@@ -11,7 +10,7 @@ import java.util.Scanner;
 public class SaleBuilder {
 
     private Sale sale;
-    private String NAME_REGEX = "^(?![ .]+$)[a-zA-Z .]*$";
+    private static final String NAME_REGEX = "^(?![ .]+$)[a-zA-Z .]*$";
 
     private SaleBuilder()
     {
@@ -23,9 +22,9 @@ public class SaleBuilder {
         return new SaleBuilder();
     }
 
-    public SaleBuilder withSaleId(String saleId)
+    public SaleBuilder withSaleId(int saleId)
     {
-        sale.setSaleId(Integer.parseInt(saleId));
+        sale.setSaleId(saleId);
         return this;
     }
 
